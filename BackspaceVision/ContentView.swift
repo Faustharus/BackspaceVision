@@ -46,7 +46,7 @@ struct ContentView: View {
 extension ContentView {
     
     func downloadJSONData() {
-        guard let url = URL(string: "http://sample-json-backspace.s3-website.eu-west-3.amazonaws.com/sample.json") else {
+        guard let url = URL(string: "URL to put here") else {
             print("Invalid URL")
             return
         }
