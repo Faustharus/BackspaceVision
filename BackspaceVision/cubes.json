@@ -1,0 +1,26 @@
+[
+    {
+        "id": "1E252FAA-3C12-4D92-BA3A-682606F3F1A8",
+        "name": "Object 1",
+        "shape": "sphere",
+        "color": "green"
+    },
+    {
+        "id": "00AB1A2A-4514-427A-9725-272954C2BE7F",
+        "name": "Object 2",
+        "shape": "box",
+        "color": "blue"
+    },
+    {
+        "id": "BAEEBD07-71D3-4B0C-A5F5-184FEBF7C3D2",
+        "name": "Object 3",
+        "shape": "cylinder",
+        "color": "yellow"
+    },
+    {
+        "id": "D5BEA374-4A40-4ED1-9ED8-4F6B67853A87",
+        "name": "Object 4",
+        "shape": "cone",
+        "color": "red"
+    }
+]

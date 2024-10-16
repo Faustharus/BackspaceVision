@@ -5,19 +5,29 @@
 //  Created by Damien Chailloleau on 16/10/2024.
 //
 
+import RealityKit
 import SwiftUI
 
 struct ObjectBox: View {
-    var object: Objects
+    @State var isDragging: Bool = false
+    
+    var drag: some Gesture {
+        DragGesture()
+            .onChanged { _ in self.isDragging = true }
+            .onEnded { _ in self.isDragging = false }
+    }
     
     var body: some View {
-        VStack {
-            Text("\(object.name)")
-            ShowObjectButton(object: object)
+        GeometryReader3D { proxy in
+            RealityView { content in
+                let modelBox = ObjectRowView.boxEntity
+                content.add(modelBox)
+            }
+            .gesture(drag)
         }
     }
 }
 
 #Preview {
-    ObjectBox(object: .localJSONData[1])
+    ObjectBox()
 }
