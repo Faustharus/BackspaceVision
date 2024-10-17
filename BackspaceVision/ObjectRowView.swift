@@ -11,7 +11,6 @@ import SwiftUI
 
 struct ObjectRowView: View {
     
-    let objects = [Objects]()
     let object: Objects
     
     var body: some View {
