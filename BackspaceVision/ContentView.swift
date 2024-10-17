@@ -15,27 +15,30 @@ struct ContentView: View {
     @State private var objects = [Objects]()
     
     let columns = [
-        GridItem(.adaptive(minimum: 300))
+        GridItem(.adaptive(minimum: 500))
     ]
     
     var body: some View {
-        LazyVGrid(columns: columns, spacing: 30) {
-            ForEach(objects) { object in
-                Button {
-                    openWindow(id: object.shape)
-                } label: {
-                    HStack {
-                        Text("\(object.shape.capitalized)")
-                        ObjectRowView(object: object).frame(depth: 0)
+        VStack {
+            LazyVGrid(columns: columns, spacing: 50) {
+                ForEach(objects) { object in
+                    Button {
+                        openWindow(id: object.shape)
+                    } label: {
+                        VStack(spacing: 5) {
+                            Text("\(object.shape.capitalized)")
+                            ObjectRowView(object: object).frame(depth: 0, alignment: .front)
+                        }
+                        .font(.largeTitle)
+                        .frame(width: 250, height: 250)
                     }
-                    .frame(height: 150)
                 }
             }
+            .padding(.all, 15)
+            .onAppear {
+                downloadJSONData()
+            }
         }
-        .onAppear {
-            downloadJSONData()
-        }
-        
     }
 }
 
@@ -43,10 +46,11 @@ struct ContentView: View {
     ContentView()
 }
 
+// MARK: Function
 extension ContentView {
     
     func downloadJSONData() {
-        guard let url = URL(string: "URL to put here") else {
+        guard let url = URL(string: "http://sample-json-backspace.s3-website.eu-west-3.amazonaws.com/sample.json") else {
             print("Invalid URL")
             return
         }

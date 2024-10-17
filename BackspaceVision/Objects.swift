@@ -54,13 +54,4 @@ extension Objects {
         let objectsResponse = try! decoder.decode([Objects].self, from: data)
         return objectsResponse
     }
-    
-    static var preview: [Objects] {
-        [
-//            .init(id: UUID().uuidString, name: "Object 1", shape: "sphere", color: "green"),
-//            .init(id: UUID().uuidString, name: "Object 2", shape: "box", color: "blue"),
-//            .init(id: UUID().uuidString, name: "Object 3", shape: "cylinder", color: "yellow"),
-//            .init(id: UUID().uuidString, name: "Object 4", shape: "cone", color: "red")
-        ]
-    }
 }
