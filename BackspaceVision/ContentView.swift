@@ -36,7 +36,9 @@ struct ContentView: View {
             }
             .padding(.all, 15)
             .onAppear {
-                downloadJSONData()
+                Task {
+                    await downloadJSONData()
+                }
             }
         }
     }
@@ -49,31 +51,26 @@ struct ContentView: View {
 // MARK: Function
 extension ContentView {
     
-    func downloadJSONData() {
+    func downloadJSONData() async {
         guard let url = URL(string: "http://sample-json-backspace.s3-website.eu-west-3.amazonaws.com/sample.json") else {
             print("Invalid URL")
             return
         }
         
-        let task = URLSession.shared.dataTask(with: url) { data, res, err in
-            if let err = err {
-                print("Error detected: \(err.localizedDescription)")
-            } else if let data = data {
-                do {
-                    let jsonDecoder = JSONDecoder()
-                    
-                    let allObjects = try jsonDecoder.decode([Objects].self, from: data)
-                    dump("\(allObjects)")
-                    for obj in allObjects {
-                        objects.append(obj)
-                    }
-                } catch {
-                    print("Error decoding JSON Data: \(error)")
-                }
+        do {
+            let (data, response) = try await URLSession.shared.data(from: url)
+            
+            guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+                print("Server error: \(response)")
+                return
             }
+            
+            let jsonDecoder = JSONDecoder()
+            let allObjects = try jsonDecoder.decode([Objects].self, from: data)
+            objects.append(contentsOf: allObjects)
+        } catch {
+            print("Error decoding JSON Data: \(error)")
         }
-        
-        task.resume()
     }
     
 }
