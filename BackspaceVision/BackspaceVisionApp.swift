@@ -11,6 +11,7 @@ import SwiftUI
 struct BackspaceVisionApp: App {
     
     @State private var appModel = AppModel()
+    @PhysicalMetric(from: .meters) private var oneMeter = 1.5
     
     var body: some Scene {
         WindowGroup {
@@ -21,6 +22,8 @@ struct BackspaceVisionApp: App {
         ImmersiveSpace(id: "sphere") {
             ObjectSphere()
                 .environment(appModel)
+                .offset(z: -oneMeter)
+                .offset(x: 0, y: -oneMeter)
                 .onAppear {
                     appModel.transitionState = .open
                 }
@@ -33,6 +36,8 @@ struct BackspaceVisionApp: App {
         ImmersiveSpace(id: "box") {
             ObjectBox()
                 .environment(appModel)
+                .offset(z: -oneMeter)
+                .offset(x: 0, y: -oneMeter)
                 .onAppear {
                     appModel.transitionState = .open
                 }
@@ -45,6 +50,8 @@ struct BackspaceVisionApp: App {
         ImmersiveSpace(id: "cylinder") {
             ObjectCylinder()
                 .environment(appModel)
+                .offset(z: -oneMeter)
+                .offset(x: 0, y: -oneMeter)
                 .onAppear {
                     appModel.transitionState = .open
                 }
@@ -57,6 +64,8 @@ struct BackspaceVisionApp: App {
         ImmersiveSpace(id: "cone") {
             ObjectCone()
                 .environment(appModel)
+                .offset(z: -oneMeter)
+                .offset(x: 0, y: -oneMeter)
                 .onAppear {
                     appModel.transitionState = .open
                 }
