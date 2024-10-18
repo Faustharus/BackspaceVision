@@ -43,6 +43,7 @@ struct ToggleSpaceButtonView: View {
             }
         } label: {
             Text(appModel.transitionState == .open ? "Hide \(shapeName.capitalized) " : "Show \(shapeName.capitalized)")
+                .font(.largeTitle)
         }
         .disabled(appModel.transitionState == .inTransition)
         .animation(.none, value: 0)

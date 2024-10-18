@@ -22,7 +22,7 @@ struct ContentView: View {
             LazyVGrid(columns: columns, spacing: 50) {
                 ForEach(appModel.objects) { object in
                     VStack(spacing: 5) {
-                        ToggleSpaceButtonView(itemRawValue: object.shape)
+                        ToggleSpaceButtonView(shapeName: object.shape)
                         
                         Spacer().frame(height: 20)
                         
