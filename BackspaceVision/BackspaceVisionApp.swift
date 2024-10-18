@@ -18,33 +18,81 @@ struct BackspaceVisionApp: App {
                 .environment(appModel)
         }
         
-        WindowGroup(id: "sphere") {
+        ImmersiveSpace(id: "sphere") {
             ObjectSphere()
                 .environment(appModel)
+                .onAppear {
+                    appModel.transitionState = .open
+                }
+                .onDisappear {
+                    appModel.transitionState = .closed
+                }
         }
-        .defaultSize(CGSize(width: 300, height: 100))
-        .windowStyle(.volumetric)
+        .immersionStyle(selection: .constant(.mixed), in: .mixed)
         
-        WindowGroup(id: "box") {
+        ImmersiveSpace(id: "box") {
             ObjectBox()
                 .environment(appModel)
+                .onAppear {
+                    appModel.transitionState = .open
+                }
+                .onDisappear {
+                    appModel.transitionState = .closed
+                }
         }
-        .defaultSize(CGSize(width: 300, height: 100))
-        .windowStyle(.volumetric)
+        .immersionStyle(selection: .constant(.mixed), in: .mixed)
         
-        WindowGroup(id: "cylinder") {
+        ImmersiveSpace(id: "cylinder") {
             ObjectCylinder()
                 .environment(appModel)
+                .onAppear {
+                    appModel.transitionState = .open
+                }
+                .onDisappear {
+                    appModel.transitionState = .closed
+                }
         }
-        .defaultSize(CGSize(width: 300, height: 100))
-        .windowStyle(.volumetric)
+        .immersionStyle(selection: .constant(.mixed), in: .mixed)
         
-        WindowGroup(id: "cone") {
+        ImmersiveSpace(id: "cone") {
             ObjectCone()
                 .environment(appModel)
+                .onAppear {
+                    appModel.transitionState = .open
+                }
+                .onDisappear {
+                    appModel.transitionState = .closed
+                }
         }
-        .defaultSize(CGSize(width: 300, height: 100))
-        .windowStyle(.volumetric)
+        .immersionStyle(selection: .constant(.mixed), in: .mixed)
+        
+//        WindowGroup(id: "sphere") {
+//            ObjectSphere()
+//                .environment(appModel)
+//        }
+//        .defaultSize(CGSize(width: 300, height: 100))
+//        .windowStyle(.volumetric)
+//        
+//        WindowGroup(id: "box") {
+//            ObjectBox()
+//                .environment(appModel)
+//        }
+//        .defaultSize(CGSize(width: 300, height: 100))
+//        .windowStyle(.volumetric)
+//        
+//        WindowGroup(id: "cylinder") {
+//            ObjectCylinder()
+//                .environment(appModel)
+//        }
+//        .defaultSize(CGSize(width: 300, height: 100))
+//        .windowStyle(.volumetric)
+//        
+//        WindowGroup(id: "cone") {
+//            ObjectCone()
+//                .environment(appModel)
+//        }
+//        .defaultSize(CGSize(width: 300, height: 100))
+//        .windowStyle(.volumetric)
     }
 }
 

@@ -21,16 +21,14 @@ struct ContentView: View {
         VStack {
             LazyVGrid(columns: columns, spacing: 50) {
                 ForEach(appModel.objects) { object in
-                    Button {
-                        openWindow(id: object.shape)
-                    } label: {
-                        VStack(spacing: 5) {
-                            Text("\(object.shape.capitalized)")
-                            ObjectRowView(object: object).frame(depth: 0, alignment: .front)
-                        }
-                        .font(.largeTitle)
-                        .frame(width: 250, height: 250)
+                    VStack(spacing: 5) {
+                        ToggleSpaceButtonView(itemRawValue: object.shape)
+                        
+                        Spacer().frame(height: 20)
+                        
+                        ObjectRowView(object: object).frame(depth: 0, alignment: .front)
                     }
+                    .padding(.vertical, 15)
                 }
             }
             .padding(.all, 15)
@@ -39,6 +37,7 @@ struct ContentView: View {
                     await appModel.downloadJSONData()
                 }
             }
+            
         }
     }
 }

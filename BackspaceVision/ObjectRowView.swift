@@ -10,7 +10,6 @@ import RealityKitContent
 import SwiftUI
 
 struct ObjectRowView: View {
-    
     let object: Objects
     
     var body: some View {

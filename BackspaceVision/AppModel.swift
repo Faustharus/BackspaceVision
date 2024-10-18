@@ -10,7 +10,16 @@ import SwiftUI
 @MainActor
 @Observable
 class AppModel {
+    enum TransitionState {
+        case open, inTransition, closed
+    }
+    enum Shapes: String, CaseIterable {
+        case sphere, box, cylinder, cone
+    }
+    
+    
     var objects = [Objects]()
+    var transitionState = TransitionState.closed
     
     init() {
         objects = []
