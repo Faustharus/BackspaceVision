@@ -65,34 +65,6 @@ struct BackspaceVisionApp: App {
                 }
         }
         .immersionStyle(selection: .constant(.mixed), in: .mixed)
-        
-//        WindowGroup(id: "sphere") {
-//            ObjectSphere()
-//                .environment(appModel)
-//        }
-//        .defaultSize(CGSize(width: 300, height: 100))
-//        .windowStyle(.volumetric)
-//        
-//        WindowGroup(id: "box") {
-//            ObjectBox()
-//                .environment(appModel)
-//        }
-//        .defaultSize(CGSize(width: 300, height: 100))
-//        .windowStyle(.volumetric)
-//        
-//        WindowGroup(id: "cylinder") {
-//            ObjectCylinder()
-//                .environment(appModel)
-//        }
-//        .defaultSize(CGSize(width: 300, height: 100))
-//        .windowStyle(.volumetric)
-//        
-//        WindowGroup(id: "cone") {
-//            ObjectCone()
-//                .environment(appModel)
-//        }
-//        .defaultSize(CGSize(width: 300, height: 100))
-//        .windowStyle(.volumetric)
     }
 }
 
