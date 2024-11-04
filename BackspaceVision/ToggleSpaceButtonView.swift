@@ -14,7 +14,11 @@ struct ToggleSpaceButtonView: View {
     @Environment(\.openImmersiveSpace) var openImmersiveSpace
     @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
     
-    let shapeName: String
+    @Environment(\.openWindow) var openWindow
+    @Environment(\.dismissWindow) var dismissWindow
+    
+//    let shapeName: String
+    let object: Objects
     
     var body: some View {
         Button {
@@ -22,27 +26,42 @@ struct ToggleSpaceButtonView: View {
                 switch appModel.transitionState {
                 case .open:
                     appModel.transitionState = .inTransition
-                    await dismissImmersiveSpace()
+                    dismissWindow()
                     
                 case .closed:
                     appModel.transitionState = .inTransition
-                    switch await openImmersiveSpace(id: shapeName) {
-                    case .opened:
-                        break
-                        
-                    case .userCancelled, .error:
-                        fallthrough
-                        
-                    @unknown default:
-                        appModel.transitionState = .closed
-                    }
+                    openWindow(value: object)
                     
                 case .inTransition:
                     break
+                    
+                @unknown default:
+                    appModel.transitionState = .closed
                 }
+//                switch appModel.transitionState {
+//                case .open:
+//                    appModel.transitionState = .inTransition
+//                    await dismissImmersiveSpace()
+//                    
+//                case .closed:
+//                    appModel.transitionState = .inTransition
+//                    switch await openImmersiveSpace(id: shapeName) {
+//                    case .opened:
+//                        break
+//                        
+//                    case .userCancelled, .error:
+//                        fallthrough
+//                        
+//                    @unknown default:
+//                        appModel.transitionState = .closed
+//                    }
+//                    
+//                case .inTransition:
+//                    break
+//                }
             }
         } label: {
-            Text(appModel.transitionState == .open ? "Hide \(shapeName.capitalized) " : "Show \(shapeName.capitalized)")
+            Text(appModel.transitionState == .open ? "Hide \(object.name.capitalized) " : "Show \(object.name.capitalized)")
                 .font(.largeTitle)
         }
         .disabled(appModel.transitionState == .inTransition)

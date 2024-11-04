@@ -17,16 +17,13 @@ class AppModel {
         case sphere, box, cylinder, cone
     }
     
-    
     var objects = [Objects]()
     var transitionState = TransitionState.closed
     
-    init() {
-        objects = []
-    }
-    
+    init() {}
     
     func downloadJSONData() async {
+        
         guard let url = URL(string: "http://sample-json-backspace.s3-website.eu-west-3.amazonaws.com/sample.json") else {
             print("Invalid URL")
             return
@@ -41,8 +38,8 @@ class AppModel {
             }
             
             let jsonDecoder = JSONDecoder()
-            let allObjects = try jsonDecoder.decode([Objects].self, from: data)
-            objects.append(contentsOf: allObjects)
+            objects = try jsonDecoder.decode([Objects].self, from: data)
+            
         } catch {
             print("Error decoding JSON Data: \(error)")
         }

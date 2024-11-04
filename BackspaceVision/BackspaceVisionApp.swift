@@ -19,61 +19,77 @@ struct BackspaceVisionApp: App {
                 .environment(appModel)
         }
         
-        ImmersiveSpace(id: "sphere") {
-            ObjectSphere()
-                .environment(appModel)
-                .offset(z: -oneMeter)
-                .offset(x: 0, y: -oneMeter)
-                .onAppear {
-                    appModel.transitionState = .open
-                }
-                .onDisappear {
-                    appModel.transitionState = .closed
-                }
+        // MARK: Attempt for Dynamic ID
+        WindowGroup(for: Objects.self) { $object in
+            if let objects = appModel.objects.first(where: { $0 == object }) {
+                ObjectRowView(object: objects)
+                    .environment(appModel)
+                    .onAppear {
+                        appModel.transitionState = .open
+                    }
+                    .onDisappear {
+                        appModel.transitionState = .closed
+                    }
+            }
         }
-        .immersionStyle(selection: .constant(.mixed), in: .mixed)
+        .windowStyle(.volumetric)
+        .defaultSize(width: 150, height: 150, depth: 100)
         
-        ImmersiveSpace(id: "box") {
-            ObjectBox()
-                .environment(appModel)
-                .offset(z: -oneMeter)
-                .offset(x: 0, y: -oneMeter)
-                .onAppear {
-                    appModel.transitionState = .open
-                }
-                .onDisappear {
-                    appModel.transitionState = .closed
-                }
-        }
-        .immersionStyle(selection: .constant(.mixed), in: .mixed)
-        
-        ImmersiveSpace(id: "cylinder") {
-            ObjectCylinder()
-                .environment(appModel)
-                .offset(z: -oneMeter)
-                .offset(x: 0, y: -oneMeter)
-                .onAppear {
-                    appModel.transitionState = .open
-                }
-                .onDisappear {
-                    appModel.transitionState = .closed
-                }
-        }
-        .immersionStyle(selection: .constant(.mixed), in: .mixed)
-        
-        ImmersiveSpace(id: "cone") {
-            ObjectCone()
-                .environment(appModel)
-                .offset(z: -oneMeter)
-                .offset(x: 0, y: -oneMeter)
-                .onAppear {
-                    appModel.transitionState = .open
-                }
-                .onDisappear {
-                    appModel.transitionState = .closed
-                }
-        }
-        .immersionStyle(selection: .constant(.mixed), in: .mixed)
+//        ImmersiveSpace(id: "sphere") {
+//            ObjectSphere()
+//                .environment(appModel)
+//                .offset(z: -oneMeter)
+//                .offset(x: 0, y: -oneMeter)
+//                .onAppear {
+//                    appModel.transitionState = .open
+//                }
+//                .onDisappear {
+//                    appModel.transitionState = .closed
+//                }
+//        }
+//        .immersionStyle(selection: .constant(.mixed), in: .mixed)
+//        
+//        ImmersiveSpace(id: "box") {
+//            ObjectBox()
+//                .environment(appModel)
+//                .offset(z: -oneMeter)
+//                .offset(x: 0, y: -oneMeter)
+//                .onAppear {
+//                    appModel.transitionState = .open
+//                }
+//                .onDisappear {
+//                    appModel.transitionState = .closed
+//                }
+//        }
+//        .immersionStyle(selection: .constant(.mixed), in: .mixed)
+//        
+//        ImmersiveSpace(id: "cylinder") {
+//            ObjectCylinder()
+//                .environment(appModel)
+//                .offset(z: -oneMeter)
+//                .offset(x: 0, y: -oneMeter)
+//                .onAppear {
+//                    appModel.transitionState = .open
+//                }
+//                .onDisappear {
+//                    appModel.transitionState = .closed
+//                }
+//        }
+//        .immersionStyle(selection: .constant(.mixed), in: .mixed)
+//        
+//        ImmersiveSpace(id: "cone") {
+//            ObjectCone()
+//                .environment(appModel)
+//                .offset(z: -oneMeter)
+//                .offset(x: 0, y: -oneMeter)
+//                .onAppear {
+//                    appModel.transitionState = .open
+//                }
+//                .onDisappear {
+//                    appModel.transitionState = .closed
+//                }
+//        }
+//        .immersionStyle(selection: .constant(.mixed), in: .mixed)
     }
 }
 
