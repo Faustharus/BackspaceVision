@@ -24,7 +24,7 @@ class AppModel {
     
     func downloadJSONData() async {
         
-        guard let url = URL(string: "http://sample-json-backspace.s3-website.eu-west-3.amazonaws.com/sample.json") else {
+        guard let url = URL(string: "API HERE") else {
             print("Invalid URL")
             return
         }
